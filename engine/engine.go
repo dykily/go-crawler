@@ -2,6 +2,7 @@ package engine
 
 import (
 	"../fetcher"
+	"fmt"
 	"log"
 )
 
@@ -18,7 +19,7 @@ func Run(seeds ...Request)  {
 		if err != nil {
 			log.Printf("Fetcher: error fetching url %s: %v", r.Url, err)
 		}
-
+		fmt.Println(body)
 		ParseResult := r.ParserFunc(body)
 		requests = append(requests, ParseResult.Requests...)
 
