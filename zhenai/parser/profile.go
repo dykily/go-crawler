@@ -5,12 +5,11 @@ import (
 	"../../model"
 	"regexp"
 )
-const userRe = `<div data-v-[0-9a-z]*="" class="m-btn purple">([^<]+)</div>`
+const userRe = `<div class="m-btn purple"[^>]*>([^<]+)</div>`
 func ParserProfile(contents []byte) engine.ParseResult {
-	re := regexp.MustCompile(cityRe)
+	re := regexp.MustCompile(userRe)
 	matches := re.FindAllSubmatch(contents, -1)
 	profile  := model.Profile{}
-
 	for i, m := range matches {
 		switch i {
 		case 0:
