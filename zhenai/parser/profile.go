@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"../../engine"
-	"../../model"
+	"go-crawler/engine"
+	"go-crawler/model"
 	"regexp"
 )
 const userRe = `<div class="m-btn purple"[^>]*>([^<]+)</div>`

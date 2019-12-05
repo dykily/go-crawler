@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"../../engine"
+	"go-crawler/engine"
 	"regexp"
 )
 const cityRe = `<a href="(http://album.zhenai.com/u/[0-9]*)"[^>]*>([^<]+)</a>`

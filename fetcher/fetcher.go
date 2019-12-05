@@ -5,9 +5,12 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
+var reteLimiter = time.Tick(100 * time.Microsecond)
 func Fetch(url string) ([]byte, error)  {
+	<-reteLimiter
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
