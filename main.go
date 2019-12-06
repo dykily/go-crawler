@@ -1,14 +1,14 @@
 package main
 
 import (
+	"go-crawler/engine"
 	"go-crawler/scheduler"
 	"go-crawler/zhenai/parser"
-	"go-crawler/engine"
 )
 
 func main() {
 	e := engine.ConcurrentEngine{
-		Scheduler: &scheduler.SimpleScheduler{},
+		Scheduler: &scheduler.QueuedScheduler{},
 		WorkerCount: 50,
 	}
 	e.Run(engine.Request{
