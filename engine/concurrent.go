@@ -5,6 +5,7 @@ import "fmt"
 type ConcurrentEngine struct {
 	Scheduler Scheduler
 	WorkerCount int
+	ItemChan chan interface{}
 }
 
 type Scheduler interface {
@@ -28,6 +29,9 @@ func (e *ConcurrentEngine) Run(seeds ...Request)  {
 		for _, item := range result.Items  {
 			fmt.Printf("Got #: %d item %v \n",itemCount, item)
 			itemCount++
+			go func() {
+				e.ItemChan <- item
+			}()
 		}
 		for _, request := range result.Requests  {
 			e.Scheduler.Submit(request)
